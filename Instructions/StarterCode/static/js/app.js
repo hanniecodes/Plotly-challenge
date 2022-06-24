@@ -31,6 +31,7 @@ function optionChanged(value){
         otu_ids=sample.otu_ids;
         otu_labels=sample.otu_labels;
         topTensamples=otu_newlabel.slice(0,10)};
+        // doesn't work ? Ask TA 
         otu_ids.map(otu_id=>{otu_newlabel.push(`OTU ${otu_id}`)});
         
       });
@@ -71,15 +72,10 @@ function optionChanged(value){
 
     });
   };
+
 // )};
 
 
-
-
-
-
-  // let dataset = dropdownMenu.property("value");  
-
-
-
   init();
+
+  
