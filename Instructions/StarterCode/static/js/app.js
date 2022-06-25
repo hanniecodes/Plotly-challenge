@@ -17,33 +17,34 @@ d3.json("../data/samples.json").then((data) => {
 function optionChanged(value){
   d3.json("../data/samples.json").then((data) =>{
     // put all samples in variable
-    var samplevals = data.samples;
+    var sample_vals = data.samples;
     // make empty lists
-    var sample_values = [];
-    var otu_ids = [];
-    var otu_labels = [];
-    var otu_newlabel=[];
-    var topTensamples=[]
+    var sampleValues = [];
+    var otuIds = [];
+    var otuLabels = [];
+    var otuNewlabel=[];
+    var topTenlabels=[]
     // loop for sample vals
-    samplevals.forEach(sample=>{
+    sample_vals.forEach(sample=>{
       if (sample.id===value){
-        sample_values=sample.sample_values;
-        otu_ids=sample.otu_ids;
-        otu_labels=sample.otu_labels;
-        topTensamples=otu_newlabel.slice(0,10)};
+        sampleValues=sample.sample_values;
+        otuIds=sample.otu_ids;
+        otuLabels=sample.otu_labels;
         // doesn't work ? Ask TA 
-        otu_ids.map(otu_id=>{otu_newlabel.push(`OTU ${otu_id}`)});
-        
+        otuIds.map(otu_id=>{
+          otuNewlabel.push(`OTU ${otu_id}`);
+        });}; 
+
       });
-    console.log(otu_ids);
+    console.log(otuIds);
     // Build Bubble layout
     var bubbleTrace={
-      x: otu_ids,
-      y:sample_values,
+      x: otuIds,
+      y:sampleValues,
       mode:'markers',
       marker:{
-        color:otu_ids,
-        size:sample_values,
+        color:otuIds,
+        size:sampleValues,
       }
     };
     var bubbleLayout ={
@@ -58,8 +59,10 @@ function optionChanged(value){
 
     var barTrace={
       type:'bar',
-      x:topTensamples,
-      y:otu_ids,
+      text:otuNewlabel.slice(0,10).reverse(),
+      // both x and y are going to be slices of my values and my ids and a .reverse to swap the order.  
+      x:sampleValues.slice(0,10).reverse(),
+      y:otuIds.slice(0,10).reverse(),
       orientation:'h'
     };
     var barLayout ={
@@ -76,6 +79,6 @@ function optionChanged(value){
 // )};
 
 
-  init();
+init();
 
   
