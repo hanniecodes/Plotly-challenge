@@ -2,8 +2,9 @@
 // Note from becky when i finish my app.js copy it to bonus js so just incase my bponus doesn't work 
 // Always Use Live server
 
-
+// ********************
 // Called in data and set data to drop down menue 
+// ********************
 var dropdownMenu = d3.select("#selDataset");
 d3.json("../data/samples.json").then((data) => {
   console.log(data)
@@ -30,13 +31,12 @@ function optionChanged(value){
         sampleValues=sample.sample_values;
         otuIds=sample.otu_ids;
         otuLabels=sample.otu_labels;
-        // doesn't work ? Ask TA 
         otuIds.map(otu_id=>{
           otuNewlabel.push(`OTU ${otu_id}`);
         });}; 
 
       });
-    console.log(otuIds);
+ 
     // Build Bubble layout
     var bubbleTrace={
       x: otuIds,
@@ -51,27 +51,33 @@ function optionChanged(value){
       title:"OTU ID",
       hovermode:'closest',
       showlegend: false,
-      height: 600,
-      width: 600
     };
 
     Plotly.newPlot('bubble',[bubbleTrace],[bubbleLayout]);
 
     var barTrace={
       type:'bar',
-      text:otuNewlabel.slice(0,10).reverse(),
+      text : otuNewlabel.slice(0,10).reverse(),
       // both x and y are going to be slices of my values and my ids and a .reverse to swap the order.  
-      x:sampleValues.slice(0,10).reverse(),
-      y:otuIds.slice(0,10).reverse(),
+      x : sampleValues.slice(0,10).reverse(),
+      y : otuIds.slice(0,10).map(otuId => `OTU ${otuId}`).reverse(),
       orientation:'h'
     };
     var barLayout ={
-      title:"Top Ten OUD",
+      title:{
+        text:'Top 10 OTU',
+        font:{
+          size:25,
+          color:'black'
+        },
+      },
       showlegend: false,
+      height: 600,
+      width: 650,
     };
     Plotly.newPlot('bar',[barTrace],[barLayout]);
 
-
+    
 
     });
   };
