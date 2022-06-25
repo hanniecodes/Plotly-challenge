@@ -55,7 +55,7 @@ function optionChanged(value){
       width: 600
     };
 
-    Plotly.newPlot('bubble',bubbleTrace,bubbleLayout);
+    Plotly.newPlot('bubble',[bubbleTrace],[bubbleLayout]);
 
     var barTrace={
       type:'bar',
@@ -69,7 +69,7 @@ function optionChanged(value){
       title:"Top Ten OUD",
       showlegend: false,
     };
-    Plotly.newPlot('bar',barTrace,barLayout);
+    Plotly.newPlot('bar',[barTrace],[barLayout]);
 
 
 
