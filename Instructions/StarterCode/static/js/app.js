@@ -4,7 +4,6 @@
 
 // ********************
 // Called in data and set data to drop down menue 
-// ********************
 var dropdownMenu = d3.select("#selDataset");
 d3.json("../data/samples.json").then((data) => {
   console.log(data)
@@ -34,9 +33,20 @@ function optionChanged(value){
         otuIds.map(otu_id=>{
           otuNewlabel.push(`OTU ${otu_id}`);
         });}; 
-
       });
- 
+    // Meta data into demographics
+    var demoData = 0;
+    var metaData=data.metadata;
+    metaData.forEach(person => {
+        if (person.id==value){
+            var demographics = Object.entries(person);
+            demoData = demographics[6][1];
+            d3.select('#sample-metadata').selectAll('panel').data(demographics).enter().append('panel').text(info=>{
+                return ` ${info[0]} : 
+                ${info[1]}--`;
+            });
+        }
+    }); 
     // Build Bubble layout
     var bubbleTrace={
       x: otuIds,
