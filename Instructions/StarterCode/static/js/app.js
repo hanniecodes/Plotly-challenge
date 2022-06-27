@@ -1,6 +1,7 @@
 // Initializes the page with a default plot 
 // Note from becky when i finish my app.js copy it to bonus js so just incase my bponus doesn't work 
 // Always Use Live server
+// == same value does not have to be  same data type
 
 // ********************
 // Called in data and set data to drop down menue 
@@ -33,9 +34,11 @@ function optionChanged(value){
         otuIds.map(otu_id=>{
           otuNewlabel.push(`OTU ${otu_id}`);
         });}; 
+        // console.log(otuIds);
       });
     // Meta data into demographics
     var demoData = 0;
+    var washData=[];
     var metaData=data.metadata;
     metaData.forEach(person => {
         if (person.id==value){
@@ -45,8 +48,16 @@ function optionChanged(value){
                 return ` ${info[0]} : 
                 ${info[1]}--`;
             });
+        if (person.id==value){
+          washData=person.wfreq;
+        };
+        console.log(washData);
+    
         }
+    // console.log(metaData);
     }); 
+
+
     // Build Bubble layout
     var bubbleTrace={
       x: otuIds,
@@ -86,7 +97,50 @@ function optionChanged(value){
       width: 650,
     };
     Plotly.newPlot('bar',[barTrace],[barLayout]);
-
+    
+    // // Guage 
+    var guageData = [
+      {
+        type: "indicator",
+        mode: "gauge+number+delta",
+        value: washData,
+        title: { text: "Srubs per week", font: { size: 24 } },
+        delta: { reference: washData },
+        gauge: {
+          axis: { range: [null, washData], tickwidth: 2, tickcolor: "darkblue" },
+          bar: { color: "darkblue" },
+          bgcolor: "white",
+          // borderwidth: 2,
+          // bordercolor: "gray",
+          steps: [
+            { range: [0, 1], color: "#e9f6e8" },
+            { range: [1, 2], color: "#d4eed1" },
+            { range: [2, 3], color: "#bee5ba" },
+            { range: [4, 5], color: "#a9dda3" },
+            { range: [5, 6], color: "#93d48c" },
+            { range: [6, 7], color: "#7dcb75" },
+            { range: [7, 8], color: "#68c35e" },
+            { range: [8, 9], color: "#52ba47" },
+          ],
+          threshold: {
+            line: { color: "red", width: 4 },
+            thickness: 1,
+            value: washData
+          }
+        }
+      }
+    ];
+    
+    var layout = {
+      title: { text: "Belly Button Washing Frequency"},
+      width: 500,
+      height: 400,
+      margin: { t: 25, r: 25, l: 25, b: 25 },
+      paper_bgcolor: "lavender",
+      font: { color: "darkblue", family: "Arial" }
+    };
+    
+    Plotly.newPlot('gauge', guageData, layout);
     
 
     });
