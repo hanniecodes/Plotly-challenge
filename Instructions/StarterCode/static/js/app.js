@@ -108,10 +108,7 @@ function optionChanged(value){
         delta: { reference: washData },
         gauge: {
           axis: { range: [0, 9], tickwidth: 1, tickcolor: "darkblue" },
-          // bar: { color: "darkblue" },
           bgcolor: "white",
-          // borderwidth: 2,
-          // bordercolor: "gray",
           steps: [
             { range: [0, .99], color: "#e8f2f6" },
             { range: [1, 1.99], color: "#d1e5ee" },
@@ -133,8 +130,6 @@ function optionChanged(value){
     
     var layout = {
       title: { text: "Belly Button Washing Frequency",font: { size: 18 } },
-      // width: 500,
-      // height: 450,
       margin: { t: 25, r: 25, l: 25, b: 25 },
       paper_bgcolor: "white",
       font: { color: "darkblue", family: "Arial" }
@@ -146,7 +141,6 @@ function optionChanged(value){
     });
   };
 
-// )};
 
 
 init();
