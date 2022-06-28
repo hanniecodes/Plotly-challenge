@@ -104,26 +104,26 @@ function optionChanged(value){
         type: "indicator",
         mode: "gauge+number+delta",
         value: washData,
-        title: { text: "Srubs per week", font: { size: 24 } },
+        title: { text: "Srubs per week", font: { size: 16 } },
         delta: { reference: washData },
         gauge: {
-          axis: { range: [null, washData], tickwidth: 2, tickcolor: "darkblue" },
-          bar: { color: "darkblue" },
+          axis: { range: [0, 9], tickwidth: 1, tickcolor: "darkblue" },
+          // bar: { color: "darkblue" },
           bgcolor: "white",
           // borderwidth: 2,
           // bordercolor: "gray",
           steps: [
-            { range: [0, 1], color: "#e9f6e8" },
-            { range: [1, 2], color: "#d4eed1" },
-            { range: [2, 3], color: "#bee5ba" },
-            { range: [4, 5], color: "#a9dda3" },
-            { range: [5, 6], color: "#93d48c" },
-            { range: [6, 7], color: "#7dcb75" },
-            { range: [7, 8], color: "#68c35e" },
-            { range: [8, 9], color: "#52ba47" },
+            { range: [0, .99], color: "#e8f2f6" },
+            { range: [1, 1.99], color: "#d1e5ee" },
+            { range: [2, 2.99], color: "#a3ccdd" },
+            { range: [4, 4.99], color: "#8cbfd4" },
+            { range: [5, 5.99], color: "#75b2cb" },
+            { range: [6, 6.99], color: "#5ea5c3" },
+            { range: [7, 7.99], color: "#4799ba" },
+            { range: [8, 9], color: "#308cb2" },
           ],
           threshold: {
-            line: { color: "red", width: 4 },
+            line: { color: "red", width: 9 },
             thickness: 1,
             value: washData
           }
@@ -132,11 +132,11 @@ function optionChanged(value){
     ];
     
     var layout = {
-      title: { text: "Belly Button Washing Frequency"},
-      width: 500,
-      height: 400,
+      title: { text: "Belly Button Washing Frequency",font: { size: 18 } },
+      // width: 500,
+      // height: 450,
       margin: { t: 25, r: 25, l: 25, b: 25 },
-      paper_bgcolor: "lavender",
+      paper_bgcolor: "white",
       font: { color: "darkblue", family: "Arial" }
     };
     
