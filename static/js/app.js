@@ -6,7 +6,7 @@
 // ********************
 // Called in data and set data to drop down menue 
 var dropdownMenu = d3.select("#selDataset");
-d3.json("../data/samples.json").then((data) => {
+d3.json("samples.json").then((data) => {
   console.log(data)
   var ID=data.names;
  // Assign the value of the dropdown menu option to be the name of the option
@@ -16,7 +16,7 @@ d3.json("../data/samples.json").then((data) => {
 
 // to set up the data to change with the dropdownMenu  
 function optionChanged(value){
-  d3.json("../data/samples.json").then((data) =>{
+  d3.json("samples.json").then((data) =>{
     // put all samples in variable
     var sample_vals = data.samples;
     // make empty lists
